@@ -8,3 +8,8 @@
 User.create(name: 'Ivan', email: 'ivan@mail.com')
 User.create(name: 'Peter', email: 'peter@mail.com')
 User.create(name: 'Maksim', email: 'maxim@mail.com')
+
+Dog.create(name: 'Bim', motto: 'Born to be wild')
+Dog.create(name: 'Max', motto: 'Calm as can be')
+Dog.create(name: 'Pirat', motto: 'Life of the pawty')
+Dog.create(name: 'Mila', motto: 'Miss Indepent')
