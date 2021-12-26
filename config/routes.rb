@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'users#index'
+  root  to: 'users#index'
   resources :dogs
   resources :microposts
   get '/microposts/:id/:text', to: 'microposts#get_text'
