@@ -14,12 +14,22 @@ class DogsController < ApplicationController
   end
 
   def create
-    @dog = Dog.create(dog_params)
-    if  @dog.save
-      redirect_to dogs_path
-    else
-      render 'new'
-    end  
+    @dog = Dog.new(dog_params)
+
+    respond_to do |format|
+      if @dog.save
+        format.html { redirect_to @dog, notice: "Dog was successfully created." }
+        format.json { render :show, status: :created, location: @dog }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @dog.errors, status: :unprocessable_entity }
+      end
+    end      
+    # if  @dog.save
+    #   redirect_to dogs_path
+    # else
+    #   render 'new'
+    # end  
   end
 
   def edit
@@ -27,11 +37,20 @@ class DogsController < ApplicationController
   end
 
   def update
-    if @dog.update(dog_params)
-      redirect_to dogs_path(@dogs)
-    else
-      render 'edit'
+    respond_to do |format|
+      if @dog.update(dog_params)
+        format.html { redirect_to @dog_params, notice: "Dog was successfully updated." }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @dog.errors, status: :unprocessable_entity }
+      end
     end    
+    # if @dog.update(dog_params)
+    #   redirect_to dogs_path(@dogs)
+    # else
+    #   render 'edit'
+    # end    
   end
 
   def destroy
